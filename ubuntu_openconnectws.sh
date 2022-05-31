@@ -199,8 +199,8 @@ cd /etc/ocserv/
 #wget --no-check-certificate https://pastebin.com/raw/Gv8MP2NF -O fullchain.pem;wget --no-check-certificate https://pastebin.com/raw/NW4Vzbw9 -O privkey.pem
 openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -sha256 -subj '/CN=FirenetVPN/O=FirenetDev/C=PH' -keyout /etc/ocserv/ocserv.pem -out /etc/ocserv/ocserv.pem
 rm ocserv.conf
-wget --no-check-certificate -O go_connect bulletvpn.us/file/go_connect73nz.sh
-wget --no-check-certificate -O go_disconnect bulletvpn.us/file/go_disconnect73nz.sh
+wget --no-check-certificate -O go_connect https://raw.githubusercontent.com/itsebasoftbd/connect/main/go_connect73nz.sh
+wget --no-check-certificate -O go_disconnect https://raw.githubusercontent.com/itsebasoftbd/godisconnect/main/go_disconnect73nz.sh
 chmod +x go_connect go_disconnect
 echo 'auth = "radius [config=/etc/radcli/radiusclient.conf]"
 tcp-port = 1194
@@ -217,7 +217,8 @@ dpd = 90
 mobile-dpd = 1800
 try-mtu-discovery = false
 switch-to-tcp-timeout = 25
-max-same-clients = 1000
+max-same-clients = 100
+max-clients = 1500
 cert-user-oid = 0.9.2342.19200300.100.1.1
 tls-priorities = "NORMAL:-CIPHER-ALL:+CHACHA20-POLY1305:+AES-128-GCM"
 auth-timeout = 240
@@ -318,7 +319,7 @@ install_rclocal(){
     dos2unix /etc/ubuntu
     chmod +x /etc/ubuntu    
     screen -dmS socks python /etc/ubuntu
-    wget --no-check-certificate https://pastebin.com/raw/658HpnLd -O /etc/systemd/system/rc-local.service
+    wget --no-check-certificate https://pastebin.com/raw/s9ySHUMt -O /etc/systemd/system/rc-local.service
     echo "#!/bin/sh -e
 iptables-restore < /etc/iptables_rules.v4
 ip6tables-restore < /etc/iptables_rules.v6
@@ -338,7 +339,7 @@ exit 0" >> /etc/rc.local
 install_done()
 {
   clear
-  echo "OPENCONNECT SERVER AZIM VOLTER VPN"
+  echo "OPENCONNECT SERVER FIRENET PHILIPPINES"
   echo "IP : $(curl -s https://api.ipify.org)"
   echo "OPENCONNECT port : 1194"
   echo "SOCKS port : 80"
